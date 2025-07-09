@@ -1,4 +1,8 @@
 # CursivePlates
+
+> [!IMPORTANT]
+> ** Please do not contact Shagu or Pepopo with any issues related to this addon. **
+
 Addon for combining Cursives DoT tracking and ShaguPlates nameplates.
 
 # Requirements
