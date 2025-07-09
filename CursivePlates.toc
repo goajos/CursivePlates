@@ -2,6 +2,17 @@
 ## Title: CursivePlates
 ## Author: goajos
 ## Notes: Combining Cursives DoT tracking and ShaguPlates nameplates
-## Version: 0.0
+## Version: 0.0.1
+## Dependencies: Cursive, ShaguPlates
+
+libs/AceLibrary/AceLibrary.lua
+
+libs/AceOO-2.0/AceOO-2.0.lua
+
+libs/AceAddon-2.0/AceAddon-2.0.lua
+libs/AceConsole/AceConsole-2.0.lua
+libs/AceEvent-2.0/AceEvent-2.0.lua
+libs/AceLocale-2.2/AceLocale-2.2.lua
 
 CursivePlates.lua
+libcursive.lua
