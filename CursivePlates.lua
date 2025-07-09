@@ -25,6 +25,7 @@ function CursivePlates:PLAYER_ENTERING_WORLD()
 
     if self.libcursive then
         if ShaguPlates.env.libdebuff then
+            ShaguPlates.env.libdebuff:UnregisterAllEvents()
             ShaguPlates.env.libdebuff = self.libcursive
             self:Print("Libcursive loaded!")
         end
