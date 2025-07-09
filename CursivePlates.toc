@@ -1,4 +1,7 @@
 ## Interface: 11200
-## Title: CursivePlates 0.0
+## Title: CursivePlates
 ## Author: goajos
 ## Notes: Combining Cursives DoT tracking and ShaguPlates nameplates
+## Version: 0.0
+
+CursivePlates.lua
