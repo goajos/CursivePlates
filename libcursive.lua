@@ -1,4 +1,9 @@
-local env1 = ShaguPlates:GetEnvironment()
+local env1
+if ShaguPlates then
+  env1 = ShaguPlates:GetEnvironment()
+elseif pfUI then
+  env1 = pfUI:GetEnvironment()
+end
 local env2 = CursivePlates:GetEnvironment()
 setfenv(1, setmetatable({}, {
   __index = function(t, k)
@@ -28,8 +33,13 @@ function libcursive:UpdateDuration(unit, unitlevel, effect, duration)
 end
 
 function libcursive:UpdateUnits()
-  if not ShaguPlates.uf or not ShaguPlates.uf.target then return end
-  ShaguPlates.uf:RefreshUnit(ShaguPlates.uf.target, "aura")
+  if ShaguPlates then
+    if not ShaguPlates.uf or not ShaguPlates.uf.target then return end
+    ShaguPlates.uf:RefreshUnit(ShaguPlates.uf.target, "aura")
+  elseif pfUI then
+    if not pfUI.uf or not pfUI.uf.target then return end
+    pfUI.uf:RefreshUnit(pfUI.uf.target, "aura")
+  end
 end
 
 function libcursive:AddEffect(unit, unitlevel, effect, duration, caster)

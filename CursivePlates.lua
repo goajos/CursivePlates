@@ -2,6 +2,7 @@ CursivePlates = CreateFrame("Frame")
 local dependencies = {
     Cursive = false,
     ShaguPlates = false,
+    pfUI = false,
 }
 
 function CursivePlates:GetEnvironment()
@@ -23,11 +24,19 @@ CursivePlates:SetScript("OnEvent", function()
         if IsAddOnLoaded("ShaguPlates") then
             dependencies.ShaguPlates = true
         end
+        if IsAddOnLoaded("pfUI") then
+            dependencies.pfUI = true
+        end
 
         if CursivePlates:CheckDependencies() then
             if CursivePlates.libcursive then
-                ShaguPlates.env.libdebuff:UnregisterAllEvents()
-                ShaguPlates.env.libdebuff = CursivePlates.libcursive
+                if ShaguPlates then
+                    ShaguPlates.env.libdebuff:UnregisterAllEvents()
+                    ShaguPlates.env.libdebuff = CursivePlates.libcursive
+                elseif pfUI then
+                    pfUI.env.libdebuff:UnregisterAllEvents()
+                    pfUI.env.libdebuff = CursivePlates.libcursive
+                end
                 CursivePlates:Print("replaced libdebuff with libcursive!")
             end
         end
@@ -35,7 +44,7 @@ CursivePlates:SetScript("OnEvent", function()
 end)
 
 function CursivePlates:CheckDependencies()
-    if dependencies.Cursive and dependencies.ShaguPlates then
+    if dependencies.Cursive and (dependencies.ShaguPlates or dependencies.pfUI) then
         CursivePlates:Print("All addon dependencies loaded!")
         return true
     else
@@ -45,6 +54,9 @@ function CursivePlates:CheckDependencies()
         end
         if not dependencies.ShaguPlates then
             CursivePlates:Print("- ShaguPlates")
+        end
+        if not dependencies.pfUI then
+            CursivePlates:Print("- pfUI")
         end
         return false
     end

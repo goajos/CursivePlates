@@ -1,9 +1,9 @@
 ## Interface: 11200
 ## Title: CursivePlates
 ## Author: goajos
-## Notes: Combining Cursives DoT tracking and ShaguPlates nameplates
+## Notes: Combining Cursives DoT tracking and pfUI/ShaguPlates nameplates
 ## Version: 0.0.1
-## Dependencies: Cursive, ShaguPlates
+## Dependencies: Cursive, pfUI || ShaguPlates
 
 CursivePlates.lua
 libcursive.lua
