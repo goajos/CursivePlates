@@ -8,6 +8,11 @@ function CursivePlates:GetEnvironment()
     return getfenv(0)
 end
 
+local ADDON_NAME = "CursivePlates"
+function CursivePlates:Print(msg)
+    DEFAULT_CHAT_FRAME:AddMessage("|cffffff00[" .. ADDON_NAME .. "]|r " .. ( msg or "nil" ))
+end
+
 CursivePlates:RegisterEvent("PLAYER_ENTERING_WORLD")
 
 CursivePlates:SetScript("OnEvent", function()
@@ -23,7 +28,7 @@ CursivePlates:SetScript("OnEvent", function()
             if CursivePlates.libcursive then
                 ShaguPlates.env.libdebuff:UnregisterAllEvents()
                 ShaguPlates.env.libdebuff = CursivePlates.libcursive
-                print("libcursive is loaded in!")
+                CursivePlates:Print("replaced libdebuff with libcursive!")
             end
         end
     end
@@ -31,15 +36,15 @@ end)
 
 function CursivePlates:CheckDependencies()
     if dependencies.Cursive and dependencies.ShaguPlates then
-        print("All addon dependencies loaded!")
+        CursivePlates:Print("All addon dependencies loaded!")
         return true
     else
-        print("Missing addon dependencies:")
+        CursivePlates:Print("Missing addon dependencies:")
         if not dependencies.Cursive then
-            print("- Cursive")
+            CursivePlates:Print("- Cursive")
         end
         if not dependencies.ShaguPlates then
-            print("- ShaguPlates")
+            CursivePlates:Print("- ShaguPlates")
         end
         return false
     end
