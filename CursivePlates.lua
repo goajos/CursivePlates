@@ -14,7 +14,6 @@ function CursivePlates:Print(msg)
 end
 
 CursivePlates:RegisterEvent("PLAYER_ENTERING_WORLD")
-
 CursivePlates:SetScript("OnEvent", function()
     if event == "PLAYER_ENTERING_WORLD" then
         if IsAddOnLoaded("Cursive") then
@@ -24,7 +23,14 @@ CursivePlates:SetScript("OnEvent", function()
             dependencies.ShaguPlates = true
         end
 
+        
+
         if CursivePlates:CheckDependencies() then
+            -- Add custom spells to ShaguPlates
+            if ShaguPlates.env and ShaguPlates.env.L then
+                ShaguPlates.env.L["debuffs"]["Dark Harvest"] = {[0] = 8.0}
+            end
+
             if CursivePlates.libcursive then
                 ShaguPlates.env.libdebuff:UnregisterAllEvents()
                 ShaguPlates.env.libdebuff = CursivePlates.libcursive

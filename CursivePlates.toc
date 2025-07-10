@@ -7,3 +7,4 @@
 
 CursivePlates.lua
 libcursive.lua
+superwow.lua
