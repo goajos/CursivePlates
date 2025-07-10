@@ -1,4 +1,10 @@
-setfenv(1, ShaguPlates:GetEnvironment())
+local env1 = ShaguPlates:GetEnvironment()
+local env2 = CursivePlates:GetEnvironment()
+setfenv(1, setmetatable({}, {
+  __index = function(t, k)
+    return env1[k] or env2[k]
+  end}))
+
 local libcursive = CreateFrame("Frame", "libcursive", UIParent)
 local scanner = libtipscan:GetScanner("libcursive")
 
@@ -157,6 +163,4 @@ function libcursive:UnitOwnDebuff(unit, id)
   end
 end
 
-if CursivePlates then
-  CursivePlates.libcursive = libcursive
-end
+CursivePlates.libcursive = libcursive

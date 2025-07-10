@@ -1,49 +1,46 @@
-local L = AceLibrary("AceLocale-2.2"):new("CursivePlates")
-CursivePlates = AceLibrary("AceAddon-2.0"):new(
-    "AceEvent-2.0",
-    "AceConsole-2.0"
-)
-
+CursivePlates = CreateFrame("Frame")
 local dependencies = {
     Cursive = false,
     ShaguPlates = false,
 }
 
-function CursivePlates:OnInitialize()
-    self:RegisterEvent("PLAYER_ENTERING_WORLD")
+function CursivePlates:GetEnvironment()
+    return getfenv(0)
 end
 
-function CursivePlates:PLAYER_ENTERING_WORLD()
-    if IsAddOnLoaded("Cursive") then
-        dependencies.Cursive = true
-    end
-    if IsAddOnLoaded("ShaguPlates") then
-        dependencies.ShaguPlates = true
-    end
+CursivePlates:RegisterEvent("PLAYER_ENTERING_WORLD")
 
-    self:CheckDependencies()
+CursivePlates:SetScript("OnEvent", function()
+    if event == "PLAYER_ENTERING_WORLD" then
+        if IsAddOnLoaded("Cursive") then
+            dependencies.Cursive = true
+        end
+        if IsAddOnLoaded("ShaguPlates") then
+            dependencies.ShaguPlates = true
+        end
 
-    if self.libcursive then
-        if ShaguPlates.env.libdebuff then
-            ShaguPlates.env.libdebuff:UnregisterAllEvents()
-            ShaguPlates.env.libdebuff = self.libcursive
-            self:Print("Libcursive loaded!")
+        if CursivePlates:CheckDependencies() then
+            if CursivePlates.libcursive then
+                ShaguPlates.env.libdebuff:UnregisterAllEvents()
+                ShaguPlates.env.libdebuff = CursivePlates.libcursive
+                print("libcursive is loaded in!")
+            end
         end
     end
-end
+end)
 
 function CursivePlates:CheckDependencies()
     if dependencies.Cursive and dependencies.ShaguPlates then
-        self:Print("All dependencies loaded!")
+        print("All addon dependencies loaded!")
+        return true
     else
-        self:Print("Missing dependencies:")
+        print("Missing addon dependencies:")
         if not dependencies.Cursive then
-            self:Print("- Cursive")
-            return
+            print("- Cursive")
         end
         if not dependencies.ShaguPlates then
-            self:Print("- ShaguPlates")
-            return
+            print("- ShaguPlates")
         end
+        return false
     end
 end
