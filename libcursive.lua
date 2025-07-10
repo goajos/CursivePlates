@@ -33,7 +33,6 @@ function libcursive:UpdateUnits()
 end
 
 function libcursive:AddEffect(unit, unitlevel, effect, duration, caster)
-  CursivePlates:Print("Effect: "..effect)
   if not unit or not effect then return end
   unitlevel = unitlevel or 0
   if not libcursive.objects[unit] then libcursive.objects[unit] = {} end
