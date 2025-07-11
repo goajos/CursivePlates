@@ -3,7 +3,8 @@
 ## Author: goajos
 ## Notes: Combining Cursives DoT tracking and pfUI/ShaguPlates nameplates
 ## Version: 0.0.1
-## Dependencies: Cursive, pfUI
+## Dependencies: Cursive
+## OptionalDeps: pfUI, ShaguPlates
 
 CursivePlates.lua
 libcursive.lua

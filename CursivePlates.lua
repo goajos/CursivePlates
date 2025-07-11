@@ -37,7 +37,7 @@ CursivePlates:SetScript("OnEvent", function()
                     pfUI.env.libdebuff:UnregisterAllEvents()
                     pfUI.env.libdebuff = CursivePlates.libcursive
                 end
-                CursivePlates:Print("replaced libdebuff with libcursive!")
+                CursivePlates:Print("Replaced libdebuff with libcursive!")
             end
         end
     end
