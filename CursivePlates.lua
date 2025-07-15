@@ -17,6 +17,9 @@ end
 CursivePlates:RegisterEvent("PLAYER_ENTERING_WORLD")
 
 CursivePlates:SetScript("OnEvent", function()
+    -- unregister the entering world effect to only do it on login
+    CursivePlates:UnregisterEvent("PLAYER_ENTERING_WORLD")
+
     if event == "PLAYER_ENTERING_WORLD" then
         if IsAddOnLoaded("Cursive") then
             dependencies.Cursive = true
